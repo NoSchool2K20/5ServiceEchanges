@@ -1,22 +1,21 @@
 {
-  "name": "hubme",
-  "reason": {
-    "react-jsx": 3
-  },
+  "name": "my-first-app",
+  "version": "0.1.0",
   "sources": {
-    "dir": "src",
-    "subdirs": true
+    "dir" : "src",
+    "subdirs" : true
   },
-  "bsc-flags": ["-bs-super-errors", "-bs-no-version-header"],
-  "package-specs": [
-    {
-      "module": "commonjs",
-      "in-source": true
-    }
-  ],
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
   "suffix": ".bs.js",
+  "bs-dependencies": [
+
+  ],
+  "warnings": {
+    "error" : "+101"
+  },
   "namespace": true,
-  "bs-dependencies": ["reason-react", "reason-urql", "bs-fetch"],
-  "ppx-flags": ["@baransu/graphql_ppx_re/ppx6"],
   "refmt": 3
 }
