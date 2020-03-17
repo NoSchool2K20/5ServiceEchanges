@@ -18,7 +18,7 @@ Automatic compilation:
 ```text
 cd 5ServiceEchanges/
 npm run watch
-```text
+```
 
 Run one of the files:
 
