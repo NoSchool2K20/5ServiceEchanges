@@ -1,23 +1,22 @@
-# Basic Reason Template
+# ReasonML : modules
 
-Pour installer BuckleScript & Reason en global :
+Installation (no global installs necessary):
 
-```bash
-sudo npm install -g bs-platform
+```text
+cd 5ServiceEchanges/
+npm install
 ```
 
-Hello! This project allows you to quickly get started with Reason and BuckleScript. 
-# Build
+Automatic compilation:
 
-```bash
-# for npm
-npm run build
+```text
+cd 5ServiceEchanges/
+npm run watch
 ```
 
-# Build + Watch
+Run one of the files:
 
-```bash
-# for npm
-npm run start
+```text
+cd 5ServiceEchangess/
+node src/HelloWorld.bs.js
 ```
-
