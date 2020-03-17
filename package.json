@@ -1,9 +1,9 @@
 {
-  "name": "my-first-app",
-  "version": "0.1.0",
+  "name": "reasonml-demo-modules",
+  "version": "1.0.0",
   "scripts": {
     "build": "bsb -make-world",
-    "start": "bsb -make-world -w",
+    "watch": "bsb -make-world -w",
     "clean": "bsb -clean-world"
   },
   "keywords": [
@@ -12,6 +12,6 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "^7.2.1"
+    "bs-platform": "^2.1.0"
   }
 }
