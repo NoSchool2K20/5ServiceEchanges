@@ -1,30 +1,14 @@
 ####{BSB GENERATED: NO EDIT
 B lib/bs
-FLG -open Hubme
-FLG -ppx /home/m2miage/yakine/Desktop/5ServiceEchanges/node_modules/@baransu/graphql_ppx_re/ppx6
-FLG -ppx '/home/m2miage/yakine/Desktop/5ServiceEchanges/node_modules/bs-platform/lib/bsppx.exe -bs-jsx 3'
-S /home/m2miage/yakine/Desktop/5ServiceEchanges/node_modules/bs-platform/lib/ocaml
-B /home/m2miage/yakine/Desktop/5ServiceEchanges/node_modules/bs-platform/lib/ocaml
-FLG -nostdlib
-FLG -w -30-40+6+7+27+32..39+44+45+101
-S /home/m2miage/yakine/Desktop/5ServiceEchanges/node_modules/reason-react/lib/ocaml
-B /home/m2miage/yakine/Desktop/5ServiceEchanges/node_modules/reason-react/lib/ocaml
-S /home/m2miage/yakine/Desktop/5ServiceEchanges/node_modules/reason-urql/lib/ocaml
-B /home/m2miage/yakine/Desktop/5ServiceEchanges/node_modules/reason-urql/lib/ocaml
-S /home/m2miage/yakine/Desktop/5ServiceEchanges/node_modules/bs-fetch/lib/ocaml
-B /home/m2miage/yakine/Desktop/5ServiceEchanges/node_modules/bs-fetch/lib/ocaml
+FLG -open ReasonmlDemoModules
+FLG -ppx '/home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-platform/linux/bsc.exe -as-ppx '
+S /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-platform/lib/ocaml
+B /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-platform/lib/ocaml
+FLG -w +a-4-9-40-41-42-50-61-102
+S /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-amqp-connection-manager/lib/ocaml
+B /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-amqp-connection-manager/lib/ocaml
+S /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-fetch/lib/ocaml
+B /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-fetch/lib/ocaml
 S src
 B lib/bs/src
-S src/Github
-B lib/bs/src/Github
-S src/Greeting
-B lib/bs/src/Greeting
-S src/FetchRandomDog
-B lib/bs/src/FetchRandomDog
-S src/ReducerFromReactJSDocs
-B lib/bs/src/ReducerFromReactJSDocs
-S src/FetchedDogPictures
-B lib/bs/src/FetchedDogPictures
-S src/BlinkingGreeting
-B lib/bs/src/BlinkingGreeting
 ####BSB GENERATED: NO EDIT}
