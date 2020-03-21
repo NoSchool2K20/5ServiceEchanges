@@ -1,6 +1,5 @@
 module Amqp = AmqpConnectionManager;
 
-let queue_name = "QviewCourse";
 
 // Create a connetion manager
 let connection = Amqp.connect([|"amqp://qzscetiz:iLJmX80CVSklfcVeS1NH81AwaHLSikPh@crow.rmq.cloudamqp.com/qzscetiz"|], ());

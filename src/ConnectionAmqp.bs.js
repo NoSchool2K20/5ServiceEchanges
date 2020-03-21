@@ -25,9 +25,6 @@ Curry._2(AmqpConnectionManager.AmqpConnectionManager.on, connection, /* `connect
 
 var Amqp = /* alias */0;
 
-var queue_name = "QviewCourse";
-
 exports.Amqp = Amqp;
-exports.queue_name = queue_name;
 exports.connection = connection;
 /* connection Not a pure module */

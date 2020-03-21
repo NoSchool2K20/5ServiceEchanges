@@ -1,6 +1,7 @@
 module Amqp = AmqpConnectionManager;
 
-let queue_name = "QviewCourse";
+
+let queue_name : Amqp.Queue.name  = "QviewCourse";
 let exchange_name = "EviewCourse";
 
 // Create a connetion manager
