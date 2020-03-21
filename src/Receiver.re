@@ -1,12 +1,13 @@
 module Amqp = AmqpConnectionManager;
 
-
-let queue_name : Amqp.Queue.name  = "QviewCourse";
-let exchange_name = "EviewCourse";
+let queue_name = "QviewCourse";
+let amqp_u = "qzscetiz"
+let amqp_p = "iLJmX80CVSklfcVeS1NH81AwaHLSikPh"
+let amqp_host = "crow.rmq.cloudamqp.com"
+let amqp_url = "amqp://"++amqp_u++":"++amqp_p++"@"++amqp_host++"/"++amqp_u
 
 // Create a connetion manager
-let connection = Amqp.connect([|"amqp://qzscetiz:iLJmX80CVSklfcVeS1NH81AwaHLSikPh@crow.rmq.cloudamqp.com/qzscetiz"|], ());
-
+let connection = Amqp.connect([|amqp_url|], ());
 
 Amqp.AmqpConnectionManager.on(
   connection,
@@ -45,4 +46,3 @@ let channelWrapper =
         ),
     },
   );
-
