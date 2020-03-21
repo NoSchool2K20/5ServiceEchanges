@@ -1,6 +1,6 @@
 module Amqp = AmqpConnectionManager;
 
-let queue_name = "QviewCourse";
+let queue_name = "Qnewuser";
 let amqp_u = "qzscetiz"
 let amqp_p = "iLJmX80CVSklfcVeS1NH81AwaHLSikPh"
 let amqp_host = "crow.rmq.cloudamqp.com"
