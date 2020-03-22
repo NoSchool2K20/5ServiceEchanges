@@ -18,6 +18,7 @@
     "amqp-connection-manager": "^3.2.0",
     "amqplib": "^0.5.5",
     "bs-amqp-connection-manager": "^3.1.0",
+    "bs-express": "^1.0.1",
     "bs-fetch": "^0.5.2"
   }
 }
