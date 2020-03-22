@@ -3,7 +3,7 @@
 
 var AmqpConnectionManager = require("bs-amqp-connection-manager/src/AmqpConnectionManager.bs.js");
 
-var queue_name = "Qnewuser";
+var queue_name = "QviewCourse";
 
 var amqp_u = "qzscetiz";
 
@@ -26,14 +26,15 @@ AmqpConnectionManager.AmqpConnectionManager.on(connection, /* `disconnect */[
 AmqpConnectionManager.AmqpConnectionManager.on(connection, /* `connect */[
       360725482,
       (function (param) {
-          console.info("connected!");
+          console.info("connected QviewCourse!");
           return /* () */0;
         })
     ]);
 
 function onMessage(channel, msg) {
   var message = JSON.parse(msg.content.toString());
-  console.log("receiver: got message", message);
+  console.log("receiver QviewCourse: got message", message);
+  console.info("TODO: sendemail(user, demandFromMessage)");
   return AmqpConnectionManager.Channel.ack(channel, msg);
 }
 

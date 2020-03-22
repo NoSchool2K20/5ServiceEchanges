@@ -9,6 +9,8 @@ S /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-amqp-connection-manager/
 B /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-amqp-connection-manager/lib/ocaml
 S /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-fetch/lib/ocaml
 B /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-fetch/lib/ocaml
+S /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-cron/lib/ocaml
+B /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-cron/lib/ocaml
 S src
 B lib/bs/src
 ####BSB GENERATED: NO EDIT}

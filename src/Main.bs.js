@@ -2,9 +2,21 @@
 'use strict';
 
 var Pervasives = require("bs-platform/lib/js/pervasives.js");
+var Receiver1$ReasonmlDemoModules = require("./Receiver1.bs.js");
+var Receiver2$ReasonmlDemoModules = require("./Receiver2.bs.js");
+var Receiver3$ReasonmlDemoModules = require("./Receiver3.bs.js");
 
-Pervasives.print_string("Hello world");
+Pervasives.print_string("Startinq Noschool amqp message listener");
 
 Pervasives.print_newline(/* () */0);
 
+var receiver1 = Receiver1$ReasonmlDemoModules.connection;
+
+var receiver2 = Receiver2$ReasonmlDemoModules.connection;
+
+var receiver3 = Receiver3$ReasonmlDemoModules.connection;
+
+exports.receiver1 = receiver1;
+exports.receiver2 = receiver2;
+exports.receiver3 = receiver3;
 /*  Not a pure module */

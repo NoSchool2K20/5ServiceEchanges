@@ -1,6 +1,6 @@
 module Amqp = AmqpConnectionManager;
 
-let queue_name = "Qnewuser";
+let queue_name = "Qelevpriv";
 let amqp_u = "qzscetiz"
 let amqp_p = "iLJmX80CVSklfcVeS1NH81AwaHLSikPh"
 let amqp_host = "crow.rmq.cloudamqp.com"
@@ -17,14 +17,15 @@ Amqp.AmqpConnectionManager.on(
 
 Amqp.AmqpConnectionManager.on(
   connection,
-  `connect(_ => Js.Console.info("connected!")),
+  `connect(_ => Js.Console.info("connected "++queue_name++"!")),
 )
 |> ignore;
 
 // Handle an incomming message.
 let onMessage = (channel, msg: Amqp.Queue.message) => {
     let message = msg.content->Node.Buffer.toString->Js.Json.parseExn;
-    Js.Console.log2("receiver: got message", message);
+    Js.Console.log2("receiver "++queue_name++": got message", message);
+    Js.Console.info("TODO: sendemail(admin, userFromMessage)");
     Amqp.Channel.ack(channel, msg);
   };
 
