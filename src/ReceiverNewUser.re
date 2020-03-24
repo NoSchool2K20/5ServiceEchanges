@@ -21,12 +21,13 @@ Amqp.AmqpConnectionManager.on(
 )
 |> ignore;
 
+
 // Handle an incomming message.
 let onMessage = (channel, msg: Amqp.Queue.message) => {
     let message = msg.content->Node.Buffer.toString->Js.Json.parseExn;
     Js.Console.log2("receiver "++queue_name++": got message", message);
     Js.Console.info("TRY: sendEmail");
-    let _ = APICall.sendMail(message);
+    let _ = APICall.sendMail(APICall.jsonToObjects(message));
     Js.Console.info("TODO: Save to S3 by Api");
     Amqp.Channel.ack(channel, msg);
   };

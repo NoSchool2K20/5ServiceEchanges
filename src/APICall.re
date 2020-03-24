@@ -19,3 +19,6 @@ let headers = Axios.Headers.fromDict(headersDict);
   );
   ();
 }
+
+
+external jsonToObjects : Js.Json.t => Js.t({..}) = "%identity";
