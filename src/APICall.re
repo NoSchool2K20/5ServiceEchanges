@@ -3,7 +3,7 @@ let sendMail= (message) => {
     let defaultHeaders = [%bs.raw {|
         {
           "Content-Type": "application/json",
-          "Authorization": "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"
+          "Authorization": "la superbe cle"
         }
     |}];
 

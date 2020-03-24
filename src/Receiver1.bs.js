@@ -2,6 +2,7 @@
 'use strict';
 
 var AmqpConnectionManager = require("bs-amqp-connection-manager/src/AmqpConnectionManager.bs.js");
+var APICall$ReasonmlDemoModules = require("./APICall.bs.js");
 
 var queue_name = "Qnewuser";
 
@@ -34,7 +35,9 @@ AmqpConnectionManager.AmqpConnectionManager.on(connection, /* `connect */[
 function onMessage(channel, msg) {
   var message = JSON.parse(msg.content.toString());
   console.log("receiver Qnewuser: got message", message);
-  console.info("TODO: Save to S3 by Api and sendemail(prof, courseFromMessage");
+  console.info("TRY: sendEmail");
+  APICall$ReasonmlDemoModules.sendMail(message);
+  console.info("TODO: Save to S3 by Api");
   return AmqpConnectionManager.Channel.ack(channel, msg);
 }
 

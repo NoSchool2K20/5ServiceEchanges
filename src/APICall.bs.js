@@ -7,7 +7,7 @@ var Caml_option = require("bs-platform/lib/js/caml_option.js");
 function sendMail(message) {
   var defaultHeaders = ({
           "Content-Type": "application/json",
-          "Authorization": "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"
+          "Authorization": "la superbe cle"
         });
   var payload = { };
   payload["personalizations"] = message;
