@@ -11,9 +11,10 @@ function sendMail(message) {
         });
   var payload = { };
   payload["personalizations"] = message;
-  return fetch("https://api.sendgrid.com/v3/mail/send", Fetch.RequestInit.make(/* Post */2, Caml_option.some(defaultHeaders), Caml_option.some(JSON.stringify(payload)), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* () */0)).then((function (prim) {
-                return prim.json();
-              }));
+  fetch("https://api.sendgrid.com/v3/mail/send", Fetch.RequestInit.make(/* Post */2, Caml_option.some(defaultHeaders), Caml_option.some(JSON.stringify(payload)), undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined)(/* () */0)).then((function (prim) {
+          return prim.json();
+        }));
+  return /* () */0;
 }
 
 exports.sendMail = sendMail;

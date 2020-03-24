@@ -9,7 +9,7 @@ let sendMail= (message) => {
 
     let payload = Js.Dict.empty();
     Js.Dict.set(payload, "personalizations",message);
-    Js.Promise.(
+    let _ =Js.Promise.(
     Fetch.fetchWithInit(
       "https://api.sendgrid.com/v3/mail/send",
       Fetch.RequestInit.make(
@@ -20,5 +20,6 @@ let sendMail= (message) => {
       )
     )
     |> then_(Fetch.Response.json)
-  );
+     );
+  ();
 }
