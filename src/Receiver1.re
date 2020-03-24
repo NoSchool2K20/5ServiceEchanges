@@ -25,7 +25,9 @@ Amqp.AmqpConnectionManager.on(
 let onMessage = (channel, msg: Amqp.Queue.message) => {
     let message = msg.content->Node.Buffer.toString->Js.Json.parseExn;
     Js.Console.log2("receiver "++queue_name++": got message", message);
-    Js.Console.info("TODO: Save to S3 by Api and sendemail(prof, courseFromMessage");
+    Js.Console.info("TRY: sendEmail");
+    APICall.sendemail(message);
+    Js.Console.info("TODO: Save to S3 by Api");
     Amqp.Channel.ack(channel, msg);
   };
 
