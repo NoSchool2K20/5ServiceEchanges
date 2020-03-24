@@ -1,5 +1,5 @@
 //send email with sendgrid
-let sendMail(msg: Js.Json) => {
+let sendMail= (message) => {
     let defaultHeaders = [%bs.raw {|
         {
           "Content-Type": "application/json",
@@ -8,18 +8,17 @@ let sendMail(msg: Js.Json) => {
     |}];
 
     let payload = Js.Dict.empty();
-    Js.Dict.set(payload, Jsontosend);
-    let response = Js.Promise.(
-        Fetch.fetchWithInit(
-            "https://api.sendgrid.com/v3/mail/send",
-            Fetch.RequestInit.make(
-                ~method_=Post,
-                ~body=Fetch.BodyInit.make(Js.Json.stringify(Js.Json.object_(payload))),
-                ~headers=headers),
-            ()
-        )
+    Js.Dict.set(payload, "personalizations",message);
+    Js.Promise.(
+    Fetch.fetchWithInit(
+      "https://api.sendgrid.com/v3/mail/send",
+      Fetch.RequestInit.make(
+        ~method_=Post,
+        ~body=Fetch.BodyInit.make(Js.Json.stringify(Js.Json.object_(payload))),
+        ~headers=defaultHeaders,
+        ()
+      )
     )
     |> then_(Fetch.Response.json)
-
-    Js.Console.log2("RESPONSE SENDGRID : "++ response);
+  );
 }
