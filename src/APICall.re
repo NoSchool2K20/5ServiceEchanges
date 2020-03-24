@@ -7,7 +7,7 @@ let sendMail= (message) => {
     {
       let dict = empty();
       dict->set("Content-type", "application/json");
-      dict->set("Authorization","API-KEY")
+      dict->set("Authorization","Bearer MYAPIKEY")
       dict;
     }
   );

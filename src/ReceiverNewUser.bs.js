@@ -35,8 +35,8 @@ AmqpConnectionManager.AmqpConnectionManager.on(connection, /* `connect */[
 function onMessage(channel, msg) {
   var message = JSON.parse(msg.content.toString());
   console.log("receiver Qnewuser: got message", message);
-  console.info("TRY: sendEmail");
   APICall$ReasonmlDemoModules.sendMail(message);
+  console.info("Email envoy\xc3\xa9");
   console.info("TODO: Save to S3 by Api");
   return AmqpConnectionManager.Channel.ack(channel, msg);
 }

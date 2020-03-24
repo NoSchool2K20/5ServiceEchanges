@@ -7,7 +7,7 @@ var Axios$1 = require("axios");
 function sendMail(message) {
   var dict = { };
   dict["Content-type"] = "application/json";
-  dict["Authorization"] = "API-KEY";
+  dict["Authorization"] = "Bearer MYAPIKEY";
   var headers = Axios.$$Headers.fromDict(dict);
   Axios$1.post("https://api.sendgrid.com/v3/mail/send", message, {
             headers: headers

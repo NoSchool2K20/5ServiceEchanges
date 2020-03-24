@@ -25,8 +25,8 @@ Amqp.AmqpConnectionManager.on(
 let onMessage = (channel, msg: Amqp.Queue.message) => {
     let message = msg.content->Node.Buffer.toString->Js.Json.parseExn;
     Js.Console.log2("receiver "++queue_name++": got message", message);
-    Js.Console.info("TRY: sendEmail");
     let _ = APICall.sendMail(APICall.jsonToObjects(message));
+    Js.Console.info("Email envoyé");
     Amqp.Channel.ack(channel, msg);
   };
 

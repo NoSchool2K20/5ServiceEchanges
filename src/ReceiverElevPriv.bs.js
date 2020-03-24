@@ -35,8 +35,8 @@ AmqpConnectionManager.AmqpConnectionManager.on(connection, /* `connect */[
 function onMessage(channel, msg) {
   var message = JSON.parse(msg.content.toString());
   console.log("receiver Qelevpriv: got message", message);
-  console.info("TRY: sendEmail");
   APICall$ReasonmlDemoModules.sendMail(message);
+  console.info("Email envoy\xc3\xa9");
   return AmqpConnectionManager.Channel.ack(channel, msg);
 }
 
