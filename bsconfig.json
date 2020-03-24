@@ -13,8 +13,8 @@
   "suffix": ".bs.js",
   "bs-dependencies": [
     "bs-amqp-connection-manager",
-    "bs-fetch",
-    "bs-cron"
+    "bs-cron",
+    "bs-axios"
   ],
   "namespace": true,
   "refmt": 3
