@@ -2,6 +2,7 @@
 'use strict';
 
 var AmqpConnectionManager = require("bs-amqp-connection-manager/src/AmqpConnectionManager.bs.js");
+var APICall$ReasonmlDemoModules = require("./APICall.bs.js");
 
 var queue_name = "QviewCourse";
 
@@ -34,7 +35,8 @@ AmqpConnectionManager.AmqpConnectionManager.on(connection, /* `connect */[
 function onMessage(channel, msg) {
   var message = JSON.parse(msg.content.toString());
   console.log("receiver QviewCourse: got message", message);
-  console.info("TODO: sendemail(user, demandFromMessage)");
+  APICall$ReasonmlDemoModules.sendMail(message);
+  console.info("Email envoy\xc3\xa9");
   return AmqpConnectionManager.Channel.ack(channel, msg);
 }
 

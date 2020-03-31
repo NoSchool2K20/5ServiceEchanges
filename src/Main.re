@@ -3,6 +3,6 @@ let () = {
   print_newline()
 };
 
-let receiver1 = Receiver1.connection;
-let receiver2 = Receiver2.connection;
-let receiver3 = Receiver3.connection;
+let receiverElevPriv   = ReceiverElevPriv.connection;
+let receiverNewUser    = ReceiverNewUser.connection;
+let receiverViewCourse = ReceiverViewCourse.connection;

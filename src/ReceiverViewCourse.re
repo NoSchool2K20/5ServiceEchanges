@@ -1,6 +1,6 @@
 module Amqp = AmqpConnectionManager;
 
-let queue_name = "Qelevpriv";
+let queue_name = "QviewCourse";
 let amqp_u = "qzscetiz"
 let amqp_p = "iLJmX80CVSklfcVeS1NH81AwaHLSikPh"
 let amqp_host = "crow.rmq.cloudamqp.com"
@@ -25,7 +25,8 @@ Amqp.AmqpConnectionManager.on(
 let onMessage = (channel, msg: Amqp.Queue.message) => {
     let message = msg.content->Node.Buffer.toString->Js.Json.parseExn;
     Js.Console.log2("receiver "++queue_name++": got message", message);
-    Js.Console.info("TODO: sendemail(admin, userFromMessage)");
+    let _ = APICall.sendMail(APICall.jsonToObjects(message));
+    Js.Console.info("Email envoyé");
     Amqp.Channel.ack(channel, msg);
   };
 
