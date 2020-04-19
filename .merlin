@@ -1,16 +1,16 @@
 ####{BSB GENERATED: NO EDIT
 B lib/bs
 FLG -open ReasonmlDemoModules
-FLG -ppx '/home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-platform/linux/bsc.exe -as-ppx '
-S /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-platform/lib/ocaml
-B /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-platform/lib/ocaml
+FLG -ppx '/home/yakine/5ServiceEchanges/node_modules/bs-platform/linux/bsc.exe -as-ppx '
+S /home/yakine/5ServiceEchanges/node_modules/bs-platform/lib/ocaml
+B /home/yakine/5ServiceEchanges/node_modules/bs-platform/lib/ocaml
 FLG -w +a-4-9-40-41-42-50-61-102
-S /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-amqp-connection-manager/lib/ocaml
-B /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-amqp-connection-manager/lib/ocaml
-S /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-fetch/lib/ocaml
-B /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-fetch/lib/ocaml
-S /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-cron/lib/ocaml
-B /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-cron/lib/ocaml
+S /home/yakine/5ServiceEchanges/node_modules/bs-amqp-connection-manager/lib/ocaml
+B /home/yakine/5ServiceEchanges/node_modules/bs-amqp-connection-manager/lib/ocaml
+S /home/yakine/5ServiceEchanges/node_modules/bs-cron/lib/ocaml
+B /home/yakine/5ServiceEchanges/node_modules/bs-cron/lib/ocaml
+S /home/yakine/5ServiceEchanges/node_modules/bs-axios/lib/ocaml
+B /home/yakine/5ServiceEchanges/node_modules/bs-axios/lib/ocaml
 S src
 B lib/bs/src
 ####BSB GENERATED: NO EDIT}
