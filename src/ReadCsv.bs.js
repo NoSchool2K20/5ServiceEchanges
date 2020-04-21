@@ -5,29 +5,82 @@ var Fs = require("fs");
 var Process = require("process");
 var Papaparse = require("papaparse");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
+var Caml_array = require("bs-platform/lib/js/caml_array.js");
+
+var Results = { };
+
+function processCell(s) {
+  var __x = s.replace(/\&/g, "&amp;");
+  var __x$1 = __x.replace(/</g, "&lt;");
+  var __x$2 = __x$1.replace(/>/g, "&gt;");
+  return __x$2.replace(/\n/g, "</div><div>");
+}
+
+function createDefnList(headers, cells) {
+  var helper = function (_acc, _n) {
+    while(true) {
+      var n = _n;
+      var acc = _acc;
+      if (n === headers.length) {
+        return acc;
+      } else {
+        _n = n + 1 | 0;
+        _acc = acc + ("<dt>" + (Caml_array.caml_array_get(headers, n) + ("</dt>\n<dd><div>" + (processCell(Caml_array.caml_array_get(cells, n)) + "</div></dd>\n"))));
+        continue ;
+      }
+    };
+  };
+  return "<dl>" + (helper("", 0) + "</dl>\n\n");
+}
 
 var args = Process.argv;
 
-var csvFile = args[args.length - 2 | 0];
+var csvFile = args[args.length - 1 | 0];
+
+var htmlFile = args[args.length - 2 | 0];
 
 var allLines = Fs.readFileSync(csvFile, "utf8");
-
-var $$Error = { };
-
-var Meta = { };
-
-var Results = { };
 
 var parseData = Papaparse.parse(allLines).data;
 
 var headers = Belt_Array.slice(parseData, 0, 1)[0];
 
+var contentRows = Belt_Array.slice(parseData, 1, parseData.length - 1 | 0);
+
+var htmlHeader = "\n<!DOCTYPE html>\n<html>\n<head>\n  <title>Service Echanges</title>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n  <style type=\"text/css\">\n  body {font-family: helvetica, arial, sans-serif; }\n  dl {\n    margin: 0.5em 0;\n  }\n  dt { color: #666; }\n  dd { margin-bottom: 0.5em; }\n  </style>\n</head>\n<body>\n";
+
+function corpsHtml(headers, rows) {
+  var helper = function (_acc, _n) {
+    while(true) {
+      var n = _n;
+      var acc = _acc;
+      if (n === headers.length) {
+        return acc;
+      } else {
+        _n = n + 1 | 0;
+        _acc = acc + ("<dt>" + (Caml_array.caml_array_get(headers, n) + ("</dt>\n<dd><div>" + (Caml_array.caml_array_get(Caml_array.caml_array_get(rows, 0), n) + "</div></dd>\n"))));
+        continue ;
+      }
+    };
+  };
+  return "<dl>" + (helper("", 0) + "</dl>\n\n");
+}
+
+var htmlString = htmlHeader + (corpsHtml(headers, contentRows) + "</body>\n</html>");
+
+Fs.writeFileSync(htmlFile, htmlString, "utf8");
+
+exports.Results = Results;
+exports.processCell = processCell;
+exports.createDefnList = createDefnList;
 exports.args = args;
 exports.csvFile = csvFile;
+exports.htmlFile = htmlFile;
 exports.allLines = allLines;
-exports.$$Error = $$Error;
-exports.Meta = Meta;
-exports.Results = Results;
 exports.parseData = parseData;
 exports.headers = headers;
+exports.contentRows = contentRows;
+exports.htmlHeader = htmlHeader;
+exports.corpsHtml = corpsHtml;
+exports.htmlString = htmlString;
 /* args Not a pure module */
