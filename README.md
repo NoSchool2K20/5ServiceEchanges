@@ -1,4 +1,6 @@
-# ReasonML : modules
+# Equipe 5 : Notes relatives a l'implementation de RabbitMQ
+
+[Rabbit Wiki](https://github.com/NoSchool2K20/Organisation/wiki/RabbitMQ)
 
 Installation (no global installs necessary):
 
