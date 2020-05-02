@@ -7,6 +7,8 @@ B /home/yakine/5ServiceEchanges/node_modules/bs-platform/lib/ocaml
 FLG -w +a-4-9-40-41-42-50-61-102
 S /home/yakine/5ServiceEchanges/node_modules/bs-amqp-connection-manager/lib/ocaml
 B /home/yakine/5ServiceEchanges/node_modules/bs-amqp-connection-manager/lib/ocaml
+S /home/yakine/5ServiceEchanges/node_modules/@glennsl/bs-json/lib/ocaml
+B /home/yakine/5ServiceEchanges/node_modules/@glennsl/bs-json/lib/ocaml
 S /home/yakine/5ServiceEchanges/node_modules/bs-cron/lib/ocaml
 B /home/yakine/5ServiceEchanges/node_modules/bs-cron/lib/ocaml
 S /home/yakine/5ServiceEchanges/node_modules/bs-axios/lib/ocaml

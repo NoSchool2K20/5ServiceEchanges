@@ -2,6 +2,7 @@
 'use strict';
 
 var Fs = require("fs");
+var Js_dict = require("bs-platform/lib/js/js_dict.js");
 var Process = require("process");
 var Papaparse = require("papaparse");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
@@ -47,28 +48,43 @@ var headers = Belt_Array.slice(parseData, 0, 1)[0];
 
 var contentRows = Belt_Array.slice(parseData, 1, parseData.length - 1 | 0);
 
-var htmlHeader = "\n<!DOCTYPE html>\n<html>\n<head>\n  <title>Service Echanges</title>\n  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n  <style type=\"text/css\">\n  body {font-family: helvetica, arial, sans-serif; }\n  dl {\n    margin: 0.5em 0;\n  }\n  dt { color: #666; }\n  dd { margin-bottom: 0.5em; }\n  </style>\n</head>\n<body>\n";
+var info = Js_dict.fromList(/* :: */[
+      /* tuple */[
+        "email",
+        Caml_array.caml_array_get(Caml_array.caml_array_get(contentRows, 0), 0)
+      ],
+      /* :: */[
+        /* tuple */[
+          "nom",
+          Caml_array.caml_array_get(Caml_array.caml_array_get(contentRows, 0), 1)
+        ],
+        /* :: */[
+          /* tuple */[
+            "prenom",
+            Caml_array.caml_array_get(Caml_array.caml_array_get(contentRows, 0), 2)
+          ],
+          /* :: */[
+            /* tuple */[
+              "amount",
+              Caml_array.caml_array_get(Caml_array.caml_array_get(contentRows, 0), 3)
+            ],
+            /* [] */0
+          ]
+        ]
+      ]
+    ]);
 
-function corpsHtml(headers, rows) {
-  var helper = function (_acc, _n) {
-    while(true) {
-      var n = _n;
-      var acc = _acc;
-      if (n === headers.length) {
-        return acc;
-      } else {
-        _n = n + 1 | 0;
-        _acc = acc + ("<dt>" + (Caml_array.caml_array_get(headers, n) + ("</dt>\n<dd><div>" + (Caml_array.caml_array_get(Caml_array.caml_array_get(rows, 0), n) + "</div></dd>\n"))));
-        continue ;
-      }
-    };
-  };
-  return "<dl>" + (helper("", 0) + "</dl>\n\n");
-}
+var person = Js_dict.fromList(/* :: */[
+      /* tuple */[
+        "person",
+        info
+      ],
+      /* [] */0
+    ]);
 
-var htmlString = htmlHeader + (corpsHtml(headers, contentRows) + "</body>\n</html>");
+var json = JSON.stringify(person);
 
-Fs.writeFileSync(htmlFile, htmlString, "utf8");
+Fs.writeFileSync(htmlFile, json, "utf8");
 
 exports.Results = Results;
 exports.processCell = processCell;
@@ -80,7 +96,7 @@ exports.allLines = allLines;
 exports.parseData = parseData;
 exports.headers = headers;
 exports.contentRows = contentRows;
-exports.htmlHeader = htmlHeader;
-exports.corpsHtml = corpsHtml;
-exports.htmlString = htmlString;
+exports.info = info;
+exports.person = person;
+exports.json = json;
 /* args Not a pure module */
