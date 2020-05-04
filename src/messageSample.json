@@ -1,0 +1,27 @@
+{
+    "personalizations": 
+    [        
+        {
+            "to": 
+            [                
+                {
+                    "email": "john.doe@noschool2k20.fr",
+                    "name": "John Doe"
+                }
+            ],
+            "subject": "Your subscription to the lesson"
+        }
+    ],
+    "from": 
+    {
+        "email": "admin@noschool2k20.fr",
+        "name": "NoReply NoSchool 2K20"
+    },
+    "content": 
+    [        
+        {
+            "type": "text/plain",
+            "value": "mail content..."
+        }
+    ]
+}
