@@ -1,5 +1,7 @@
 module Amqp = AmqpConnectionManager;
 
+external jsonToObjects : Js.Json.t => Js.t({..}) = "%identity";
+
 let queue_name = "Qnewuser";
 let amqp_u = "qzscetiz"
 let amqp_p = "iLJmX80CVSklfcVeS1NH81AwaHLSikPh"
@@ -24,12 +26,13 @@ Amqp.AmqpConnectionManager.on(
 
 // Handle an incomming message.
 let onMessage = (channel, msg: Amqp.Queue.message) => {
+    
+    Js.Console.log("receiver "++queue_name++": got message");
+    let _ = SendMailAMQP.sendMail(msg, channel);
     let message = msg.content->Node.Buffer.toString->Js.Json.parseExn;
-    Js.Console.log2("receiver "++queue_name++": got message", message);
-    let _ = APICall.sendMail(APICall.jsonToObjects(message));
-    Js.Console.info("Email envoyé");
-    Js.Console.info("TODO: Save to S3 by Api");
-    Amqp.Channel.ack(channel, msg);
+    
+    Js.Console.info("TODO: Save to csv local file");
+    //jsonToObjects(message) -> TO CSV(name,email,subject)
   };
 
 // Set up a channel listening for messages in the queue.
