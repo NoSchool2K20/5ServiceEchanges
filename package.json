@@ -5,7 +5,7 @@
     "build": "bsb -make-world",
     "watch": "bsb -make-world -w",
     "clean": "bsb -clean-world",
-    "start": "node src/Main.bs.js",
+    "start": "node /app/src/Main.bs.js",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "keywords": [
