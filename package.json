@@ -1,5 +1,5 @@
 {
-  "name": "reasonml-demo-modules",
+  "name": "noschool5-exchanges",
   "version": "1.0.0",
   "scripts": {
     "build": "bsb -make-world",
