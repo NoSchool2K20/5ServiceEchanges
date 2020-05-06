@@ -12,20 +12,17 @@ let receiverNewUser    = ReceiverNewUser.connection;
 let receiverViewCourse = ReceiverViewCourse.connection;
 //let receiverNewCourse   = ReceiverNewCourse.connection;
 
-let onListen = e =>
-  switch (e) {
-  | exception (Js.Exn.Error(e)) =>
-    (
-      switch (Js.Exn.message(e)) {
-      | None => "UNKNOWN ERROR"
-      | Some(msg) => msg
-      }
-    )
-    |> Logger.error;
-    Node.Process.exit(1);
-  | _ => "Listening at http://127.0.0.1:8080" |> Logger.info
-  };
+type express;
+type response;
+type handler = (string, response) => unit;
+[@bs.send] external get : (express, string, handler) => unit = "";
+[@bs.send] external send : (response, string) => unit = "";
+[@bs.send] external listen : (express, int) => unit = "";
+[@bs.module] external express : unit => express = "express";
+let app = express();
+get(app, "/", (_, res) => {
+  send(res, "QSI NoSchool 2k20 DSI");
+});
+listen(app, 8080)
 
-let server = Express.App.listen(Api.app, ~port=8080, ~onListen, ());
-
-Js.log("Running 5 Exchanges");
+Js.log("5 Exchanges Running");

@@ -31,6 +31,7 @@ let headers = Axios.Headers.fromDict(headersDict);
     |> catch((error) => {
       Amqp.Channel.nack(channel, msg);
       Js.Console.info(error);
+      
       resolve(error)
     })
   );
