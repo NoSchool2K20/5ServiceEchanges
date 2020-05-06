@@ -1,1 +1,1 @@
-exchange: node src/Main.bs.js
+exchange: node src/Index.bs.js
