@@ -23,11 +23,8 @@ Amqp.AmqpConnectionManager.on(
 
 // Handle an incomming message.
 let onMessage = (channel, msg: Amqp.Queue.message) => {
-    let message = msg.content->Node.Buffer.toString->Js.Json.parseExn;
-    Js.Console.log2("receiver "++queue_name++": got message", message);
-    let _ = APICall.sendMail(APICall.jsonToObjects(message));
-    Js.Console.info("Email envoyé");
-    Amqp.Channel.ack(channel, msg);
+    Js.Console.log("receiver "++queue_name++": got message");
+    let _ = SendMailAMQP.sendMail(msg, channel);  
   };
 
 // Set up a channel listening for messages in the queue.
