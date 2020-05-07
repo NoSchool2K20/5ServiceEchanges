@@ -32,7 +32,7 @@ let createDefnList = (headers: array(string), cells: array(string)) : string => 
 
 let args = Node.Process.argv;
 let csvFile = Belt.Array.getUnsafe(args, Belt.Array.length(args) - 1);
-let htmlFile = Belt.Array.getUnsafe(args, Belt.Array.length(args) - 2);
+let jsonFile = Belt.Array.getUnsafe(args, Belt.Array.length(args) - 2);
 
 /* Read the entire CSV file as one string */
 let allLines = Node.Fs.readFileAsUtf8Sync(csvFile);
@@ -97,30 +97,10 @@ let jsonString = corpsJson(headers,contentRows)
 
  */
 
+let adminBotEmail = "admin@noschool2k20.fr";
+let adminBotName = "NoReply NoSchool 2K20";
+
+let messageJson = ModelJson.formatMessage(contentRows[0][0],contentRows[0][1],"toto",adminBotEmail,adminBotName,"200")
 
 
-let info: Js.Dict.t(Js.Json.t) =
-  Js.Dict.fromList([
-    ("email", Js.Json.string(contentRows[0][0])),
-    ("nom", Js.Json.string(contentRows[0][1])),
-    ("prenom", Js.Json.string(contentRows[0][2])),
-    ("amount", Js.Json.string(contentRows[0][3])),
-  ]);
-
-/** 
-let encodeInfo: csvFormat => Js.Json.t =
-  csvFormat =>
-    Json.Encode.object_([
-      ("name", Json.Encode.string(info.name)),
-      ("hobbies", Json.Encode.list(Json.Encode.string, info.hobbies)),
-      ("isYoloing", Json.Encode.nullable(Json.Encode.bool, info.isYoloing)),
-    ]);
-*/
-
-let person: Js.Dict.t(Js.Json.t) =
-  Js.Dict.fromList([("person", Js.Json.object_(info))]);
-
-let json: string = person |> Js.Json.object_ |> Js.Json.stringify;
-
-let _ = Node.Fs.writeFileAsUtf8Sync(htmlFile,json);
 

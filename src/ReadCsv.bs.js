@@ -2,11 +2,11 @@
 'use strict';
 
 var Fs = require("fs");
-var Js_dict = require("bs-platform/lib/js/js_dict.js");
 var Process = require("process");
 var Papaparse = require("papaparse");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
+var ModelJson$ReasonmlDemoModules = require("./ModelJson.bs.js");
 
 var Results = { };
 
@@ -38,7 +38,7 @@ var args = Process.argv;
 
 var csvFile = args[args.length - 1 | 0];
 
-var htmlFile = args[args.length - 2 | 0];
+var jsonFile = args[args.length - 2 | 0];
 
 var allLines = Fs.readFileSync(csvFile, "utf8");
 
@@ -48,55 +48,23 @@ var headers = Belt_Array.slice(parseData, 0, 1)[0];
 
 var contentRows = Belt_Array.slice(parseData, 1, parseData.length - 1 | 0);
 
-var info = Js_dict.fromList(/* :: */[
-      /* tuple */[
-        "email",
-        Caml_array.caml_array_get(Caml_array.caml_array_get(contentRows, 0), 0)
-      ],
-      /* :: */[
-        /* tuple */[
-          "nom",
-          Caml_array.caml_array_get(Caml_array.caml_array_get(contentRows, 0), 1)
-        ],
-        /* :: */[
-          /* tuple */[
-            "prenom",
-            Caml_array.caml_array_get(Caml_array.caml_array_get(contentRows, 0), 2)
-          ],
-          /* :: */[
-            /* tuple */[
-              "amount",
-              Caml_array.caml_array_get(Caml_array.caml_array_get(contentRows, 0), 3)
-            ],
-            /* [] */0
-          ]
-        ]
-      ]
-    ]);
+var adminBotEmail = "admin@noschool2k20.fr";
 
-var person = Js_dict.fromList(/* :: */[
-      /* tuple */[
-        "person",
-        info
-      ],
-      /* [] */0
-    ]);
+var adminBotName = "NoReply NoSchool 2K20";
 
-var json = JSON.stringify(person);
-
-Fs.writeFileSync(htmlFile, json, "utf8");
+var messageJson = ModelJson$ReasonmlDemoModules.formatMessage(Caml_array.caml_array_get(Caml_array.caml_array_get(contentRows, 0), 0), Caml_array.caml_array_get(Caml_array.caml_array_get(contentRows, 0), 1), "toto", adminBotEmail, adminBotName, "200");
 
 exports.Results = Results;
 exports.processCell = processCell;
 exports.createDefnList = createDefnList;
 exports.args = args;
 exports.csvFile = csvFile;
-exports.htmlFile = htmlFile;
+exports.jsonFile = jsonFile;
 exports.allLines = allLines;
 exports.parseData = parseData;
 exports.headers = headers;
 exports.contentRows = contentRows;
-exports.info = info;
-exports.person = person;
-exports.json = json;
+exports.adminBotEmail = adminBotEmail;
+exports.adminBotName = adminBotName;
+exports.messageJson = messageJson;
 /* args Not a pure module */
