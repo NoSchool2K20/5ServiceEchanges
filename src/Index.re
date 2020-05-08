@@ -10,7 +10,9 @@ let () = {
 let receiverElevPriv   = ReceiverElevPriv.connection;
 let receiverNewUser    = ReceiverNewUser.connection;
 let receiverViewCourse = ReceiverViewCourse.connection;
-//let receiverNewCourse   = ReceiverNewCourse.connection;
+
+//Connexion a une file poubelle
+let senderDlq = MoveToDLQ.connection;
 
 type express;
 type response;
