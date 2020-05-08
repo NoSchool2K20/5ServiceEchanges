@@ -24,15 +24,18 @@ let headers = Axios.Headers.fromDict(headersDict);
     Axios.postDatac("https://api.sendgrid.com/v3/mail/send",{jsonToObjects(message)}, Axios.makeConfig(~headers, ()))
     |> then_((response) => {
       Amqp.Channel.ack(channel, msg);
-      Js.Console.info(response);
       Js.Console.info("Email envoyé");
       resolve(response##data)
     })
     |> catch((error) => {
-      Amqp.Channel.nack(channel, msg);
-      Js.Console.info(error);
+      Js.log("Error: Unable to send message: format exception")
+      //Amqp.Channel.nack(channel, msg);
       
+      //Publier le message dans une autre file DLQ (Dead letter Queue puis l'ack pour traitement ulterieur par administrateur
+      let _ = MoveToDLQ.dlq(msg);
+      Amqp.Channel.ack(channel, msg);
       resolve(error)
+
     })
   );
   result;
