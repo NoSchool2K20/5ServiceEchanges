@@ -1,3 +1,17 @@
+/**
+ * Start listening on port 8080
+ */
+
+let () = {
+  print_string("Startinq Noschool amqp message listener");
+  print_newline()
+};
+
+let receiverElevPriv   = ReceiverElevPriv.connection;
+let receiverNewUser    = ReceiverNewUser.connection;
+let receiverViewCourse = ReceiverViewCourse.connection;
+//let receiverNewCourse   = ReceiverNewCourse.connection;
+
 type express;
 type response;
 type handler = (string, response) => unit;
@@ -10,3 +24,5 @@ get(app, "/", (_, res) => {
   send(res, "QSI NoSchool 2k20 DSI");
 });
 listen(app, 8080)
+
+Js.log("5 Exchanges Running");

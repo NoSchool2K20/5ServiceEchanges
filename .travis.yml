@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- lts/*
+script:
+- npm i bs-platform --no-save
+- npm run build
+after_success:
+- git remote add clever https://$CLEVER_TOKEN:$CLEVER_SECRET@push-par-clevercloud-customers.services.clever-cloud.com/$CLEVER_APP_ID.git
+- git push -u clever master
+before_install:
+    - npm i -g npm@latest

@@ -1,6 +1,6 @@
 ####{BSB GENERATED: NO EDIT
 B lib/bs
-FLG -open ReasonmlDemoModules
+FLG -open Noschool5Exchanges
 FLG -ppx '/usr/lib/node_modules/bs-platform/linux/bsc.exe -as-ppx '
 S /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-platform/lib/ocaml
 B /home/sansen/TPs/QSI/5ServiceEchanges/node_modules/bs-platform/lib/ocaml
