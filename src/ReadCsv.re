@@ -46,9 +46,8 @@ let contentRows = Belt.Array.slice(parseData, ~offset=1, ~len=Belt.Array.length(
 let adminBotEmail = "admin@noschool2k20.fr";
 let adminBotName = "NoReply NoSchool 2K20";
 
-let n = Array.length(contentRows)
-
-let messageJson = ModelJson.formatMessage(contentRows[0][0],contentRows[0][1],"toto",adminBotEmail,adminBotName,"200")
+//let n = Array.length(contentRows)
+//let messageJson = ModelJson.formatMessage(contentRows[0][0],contentRows[0][1],"toto",adminBotEmail,adminBotName,"200")
 
 let writeJson = (rows: array(array(string)),n:int)=>{
   let email = rows[n][0]
@@ -57,7 +56,7 @@ let writeJson = (rows: array(array(string)),n:int)=>{
       Js.log(messageJson)
 }
 
-for (n in 0 to Array.length(contentRows)-2){
+for (n in 0 to Array.length(contentRows) - 2){
   let message = writeJson(contentRows,n)
   //let _ = SendMailAMQP.sendMail(message,channel)
 
