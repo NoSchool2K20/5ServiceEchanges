@@ -49,16 +49,19 @@ let adminBotName = "NoReply NoSchool 2K20";
 //let n = Array.length(contentRows)
 //let messageJson = ModelJson.formatMessage(contentRows[0][0],contentRows[0][1],"toto",adminBotEmail,adminBotName,"200")
 
-let writeJson = (rows: array(array(string)),n:int)=>{
+let writeJson = (rows: array(array(string)),n:int) : Js.Json.t => {
   let email = rows[n][0]
   let name = rows[n][1]
-      let messageJson = ModelJson.formatMessage(name,email,"toto",adminBotEmail,adminBotName,"200");
-      Js.log(messageJson)
+  let subject = rows[n][2]
+  
+  ModelJson.formatMessage(name,email,subject,adminBotEmail,adminBotName,"200");
+      
 }
 
 for (n in 0 to Array.length(contentRows) - 2){
   let message = writeJson(contentRows,n)
-  //let _ = SendMailAMQP.sendMail(message,channel)
+  Js.log(message)
+  //let _ = APICall.sendMail(message)
 
 }
 
