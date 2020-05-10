@@ -8,14 +8,15 @@ let job =
     (),
   );
 
+// Firing every second, printing 'Just doing my job'
+start(job);
+
 let minuteJob =
 CronJob.make(
   `CronString("30 * * * * *"),
   _ => Js.log("Just doing my minute job"),
   (),
 );
- 
-// Firing every second, printing 'Just doing my job'
-start(job);
+
 start(minuteJob);
 

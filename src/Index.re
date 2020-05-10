@@ -11,6 +11,20 @@ let receiverElevPriv   = ReceiverElevPriv.connection;
 let receiverNewUser    = ReceiverNewUser.connection;
 let receiverViewCourse = ReceiverViewCourse.connection;
 
+//cron JOB for weekly send csv files
+open BsCron
+ 
+// Make a job that will fire every second when started
+let job =
+  CronJob.make(
+    `CronString("* * * * * *"),
+    _ => Js.log("Just doing my job"),
+    (),
+  );
+
+// Firing every second, printing 'Just doing my job'
+start(job);
+
 //Connexion a une file poubelle
 let senderDlq = MoveToDLQ.connection;
 
