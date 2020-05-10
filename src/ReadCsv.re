@@ -54,7 +54,7 @@ let writeJson = (rows: array(array(string)),n:int) : Js.Json.t => {
   let name = rows[n][1]
   let subject = rows[n][2]
   
-  ModelJson.formatMessage(name,email,subject,adminBotEmail,adminBotName,"200");
+  ModelJson.createContent(name,email,subject,"NoSchool5-exchanges");
       
 }
 external jsonToObjects : Js.Json.t => Js.t({..}) = "%identity";
