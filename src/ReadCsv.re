@@ -1,8 +1,12 @@
+//cron JOB for weekly send csv files
+open BsCron
+ 
 module Results = {
  [@bs.deriving abstract] type t = {
       data: array(array(string))
   };
 };
+
 
 
 [@bs.val] [@bs.module "papaparse"] external parse :
