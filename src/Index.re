@@ -17,8 +17,8 @@ open BsCron
 // Make a job that will fire every second when started
 let job =
   CronJob.make(
-    `CronString("* * * * * *"),
-    _ => Js.log("Just doing my job"),
+    `CronString("15 * * * * *"),
+    _ => Js.log("Just doing my job every hour and 15 minutes every day"),
     (),
   );
 
