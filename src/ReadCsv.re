@@ -32,7 +32,6 @@ let createDefnList = (headers: array(string), cells: array(string)) : string => 
 
 let args = Node.Process.argv;
 let csvFile = Belt.Array.getUnsafe(args, Belt.Array.length(args) - 1);
-let jsonFile = Belt.Array.getUnsafe(args, Belt.Array.length(args) - 2);
 
 /* Read the entire CSV file as one string */
 let allLines = Node.Fs.readFileAsUtf8Sync(csvFile);
@@ -42,65 +41,25 @@ let parseData = Results.dataGet(parse(allLines));
 
 let headers = Belt.Array.slice(parseData, ~offset=0, ~len=1) |. Belt.Array.getUnsafe(_,0);
 let contentRows = Belt.Array.slice(parseData, ~offset=1, ~len=Belt.Array.length(parseData) - 1);
-/**
-let htmlHeader = {js|
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Service Echanges</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <style type="text/css">
-  body {font-family: helvetica, arial, sans-serif; }
-  dl {
-    margin: 0.5em 0;
-  }
-  dt { color: #666; }
-  dd { margin-bottom: 0.5em; }
-  </style>
-</head>
-<body>
-|js};
 
-
-let corpsHtml = (headers: array(string),rows: array(array(string))): string => {
- let rec helper = (acc: string, n: int) : string => {
-    if (n == Belt.Array.length(headers)) {
-      acc
-    } else {
-        helper(acc ++ "<dt>" ++ headers[n] ++ "</dt>\n<dd><div>"
-        ++ rows[0][n] ++ "</div></dd>\n", n + 1) ;
-
-    }
-  };
-  
-  "<dl>" ++ helper("", 0) ++ "</dl>\n\n";
-};
-  
-//let htmlString=htmlHeader ++ corpsHtml(headers,contentRows) ++ {js|</body>\n</html>|js}
-
-
-let corpsJson = (headers: array(string),rows: array(array(string))): string => {
- let rec helper = (acc: string, n: int) : string => {
-    if (n == Belt.Array.length(headers)) {
-      acc
-    } else {
-        helper(acc  ++ headers[n] ++ ":"
-        ++ rows[0][n] ++ ",", n + 1) ;
-
-    }
-  };
-  
- "{"++ helper("", 0)++"}";
-};
-
-let jsonString = corpsJson(headers,contentRows)
-
- */
 
 let adminBotEmail = "admin@noschool2k20.fr";
 let adminBotName = "NoReply NoSchool 2K20";
 
+let n = Array.length(contentRows)
+
 let messageJson = ModelJson.formatMessage(contentRows[0][0],contentRows[0][1],"toto",adminBotEmail,adminBotName,"200")
 
+let writeJson = (rows: array(array(string)),n:int)=>{
+  let email = rows[n][0]
+  let name = rows[n][1]
+      let messageJson = ModelJson.formatMessage(name,email,"toto",adminBotEmail,adminBotName,"200");
+      Js.log(messageJson)
+}
 
+for (n in 0 to Array.length(contentRows)-2){
+  let message = writeJson(contentRows,n)
+  //let _ = SendMailAMQP.sendMail(message,channel)
+
+}
 
