@@ -29,7 +29,6 @@ let onMessage = (channel, msg: Amqp.Queue.message) => {
     
     Js.Console.log("receiver "++queue_name++": got message");
     let _ = SendMailAMQP.sendMail(msg, channel);
-    let message = msg.content->Node.Buffer.toString->Js.Json.parseExn;
     
     Js.Console.info("TODO: Save to csv local file");
     //jsonToObjects(message) -> TO CSV(name,email,subject)
