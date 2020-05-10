@@ -62,7 +62,7 @@ external jsonToObjects : Js.Json.t => Js.t({..}) = "%identity";
 for (n in 0 to Array.length(contentRows) - 2){
   let message = writeJson(contentRows,n)
   Js.log(message)
-  let _ = APICall.sendMail(jsonToObjects(message))
+  let _ = SendMail.sendMail(jsonToObjects(message))
 
 }
 
