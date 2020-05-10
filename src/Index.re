@@ -17,8 +17,12 @@ open BsCron
 // Make a job that will fire every second when started
 let job =
   CronJob.make(
+    //Every first day of month `CronString("0 0 0 1 * *"),
     `CronString("15 * * * * *"),
-    _ => Js.log("Just doing my job every hour and 15 minutes every day"),
+    _ => {
+      Js.log("Sending Invoices from invoices.csv for current Executed Each first day of month ");
+      ReadCsv.parseCsv();
+    },
     (),
   );
 
