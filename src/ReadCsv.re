@@ -1,8 +1,12 @@
+//cron JOB for weekly send csv files
+open BsCron
+ 
 module Results = {
  [@bs.deriving abstract] type t = {
       data: array(array(string))
   };
 };
+
 
 
 [@bs.val] [@bs.module "papaparse"] external parse :
@@ -31,7 +35,7 @@ let createDefnList = (headers: array(string), cells: array(string)) : string => 
 
 
 let args = Node.Process.argv;
-let csvFile = Belt.Array.getUnsafe(args, Belt.Array.length(args) - 1);
+let csvFile = Filename.concat(Filename.current_dir_name,"test.csv")
 
 /* Read the entire CSV file as one string */
 let allLines = Node.Fs.readFileAsUtf8Sync(csvFile);
@@ -57,12 +61,38 @@ let writeJson = (rows: array(array(string)),n:int) : Js.Json.t => {
   ModelJson.createContent(name,email,subject,"NoSchool5-exchanges");
       
 }
+
+
 external jsonToObjects : Js.Json.t => Js.t({..}) = "%identity";
 
-for (n in 0 to Array.length(contentRows) - 2){
-  let message = writeJson(contentRows,n)
-  Js.log(message)
-  let _ = SendMail.sendMail(jsonToObjects(message))
-
+let sendMail = {
+  for (n in 0 to Array.length(contentRows) - 2){
+    let message = writeJson(contentRows,n)
+    Js.log(message)
+    let _ = SendMail.sendMail(jsonToObjects(message))
+  }
 }
+// Make a job that will fire every minute pas hour on day of month
+let joblog =
+  CronJob.make(
+    `CronString("* 09 1 * *"),
+    _ => Js.log("Send Email"),
+    (),
+  );
+
+// Firing every second, printing 'Just doing my job'
+start(joblog);
+
+// Make a job that will fire every minute pas hour on day of month
+let job =
+  CronJob.make(
+    `CronString("* 09 1 * *"),
+    _ => sendMail,
+    (),
+  );
+
+// Firing every second, printing 'Just doing my job'
+start(job);
+
+
 
