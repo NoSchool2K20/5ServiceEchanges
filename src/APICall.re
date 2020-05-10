@@ -6,8 +6,10 @@ let sendMail= (message) => {
   Js.Dict.(
     {
       let dict = empty();
+      let apiKey = "jmDshemWSbqg-ErGe2PHmg.hZuFOWNAGLKfYw3xoeS9GKHdPzzWeHEZTrIY0U8L4wU";
+      
       dict->set("Content-type", "application/json");
-      dict->set("Authorization","Bearer MYAPIKEY")
+      dict->set("Authorization","Bearer SG."++apiKey)
       dict;
     }
   );
